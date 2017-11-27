@@ -1,0 +1,303 @@
+{
+  "startAt": 0,
+  "maxResults": 1048576,
+  "total": 8,
+  "comments": [
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/556792",
+      "id": "556792",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "First curl copies the data. Second curl enables the lookup from mongo \r\nCurls to migrate all sequences to mongo \r\n{code}\r\ncurl -XGET 'http://localhost:8080/restricted/v1/sequence/toMongo?offset=10000&dbTypes=GRL,PARTNER,CLIENT,APPS,PERSISTENT_SEARCH&updateProperty=false'\r\n{code}\r\n\r\n{code}\r\ncurl -XGET 'http://localhost:8080/restricted/v1/sequence/toMongo?offset=100&dbTypes=GRL,PARTNER,CLIENT,APPS,PERSISTENT_SEARCH&updateProperty=true'\r\n{code}\r\n\r\nMigrate specifc sequence to mongo \r\n{code}\r\ncurl -XGET http://localhost:8080/restricted/v1/sequence/toMongoForSequences?offset=100&sequences=POST_ID_SEQ&updateProperty=false\r\n{code}\r\n\r\n{code}\r\ncurl -XGET http://localhost:8080/restricted/v1/sequence/toMongoForSequences?offset=100&sequences=POST_ID_SEQ&updateProperty=true\r\n{code}",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-14T13:46:38.249-0500",
+      "updated": "2016-10-14T13:46:38.249-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/557870",
+      "id": "557870",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "Explanation for Server configuration for sequence to mongo \r\n1.There are 4 dbs created \r\n{code}\r\nstagingDefault:PRIMARY> db.serverConfiguration.find({serverType:\"SEQUENCE_FACTORY\", serverCategory:\"MONGO\"}).pretty()\r\n{\r\n\t\"_id\" : ObjectId(\"5803ae8e3e376e3c9d745e94\"),\r\n\t\"partnerId\" : -1,\r\n\t\"clientId\" : -1,\r\n\t\"serverCategory\" : \"MONGO\",\r\n\t\"serverType\" : \"SEQUENCE_FACTORY\",\r\n\t\"name\" : \"MONGO-SEQUENCE_FACTORY-SPR_PARTNER_0_-1_GLOBAL\",\r\n\t\"sequenceName\" : \"GLOBAL\",\r\n\t\"dbName\" : \"SPR_GLOBAL_SEQUENCE\",\r\n\t\"mongoServerId\" : \"SPR_PARTNER_0_-1_GLOBAL\",\r\n\t\"url\" : \"10.0.1.130:53421,10.0.2.7:53421\",\r\n\t\"user\" : \"sprmys\"\r\n}\r\n{\r\n\t\"_id\" : ObjectId(\"5803aea63e376e3c9d745e97\"),\r\n\t\"partnerId\" : 0,\r\n\t\"clientId\" : -1,\r\n\t\"serverCategory\" : \"MONGO\",\r\n\t\"serverType\" : \"SEQUENCE_FACTORY\",\r\n\t\"name\" : \"MONGO-SEQUENCE_FACTORY-SPR_PARTNER_0_-1_LINK_ID_SEQ\",\r\n\t\"sequenceName\" : \"LINK_ID_SEQ\",\r\n\t\"dbName\" : \"SPR_PARTNER0_-1_LINK_ID_SEQ\",\r\n\t\"mongoServerId\" : \"SPR_PARTNER_0_-1_LINK_ID_SEQ\",\r\n\t\"url\" : \"10.0.1.130:53421,10.0.2.7:53421\",\r\n\t\"user\" : \"sprmys\"\r\n}\r\n{\r\n\t\"_id\" : ObjectId(\"5803ae9e3e376e3c9d745e96\"),\r\n\t\"partnerId\" : 0,\r\n\t\"clientId\" : -1,\r\n\t\"serverCategory\" : \"MONGO\",\r\n\t\"serverType\" : \"SEQUENCE_FACTORY\",\r\n\t\"name\" : \"MONGO-SEQUENCE_FACTORY-SPR_PARTNER_0_-1_POST_ID_SEQ\",\r\n\t\"sequenceName\" : \"POST_ID_SEQ\",\r\n\t\"dbName\" : \"SPR_PARTNER0_POST_ID_SEQ\",\r\n\t\"mongoServerId\" : \"SPR_PARTNER_0_-1_POST_ID_SEQ\",\r\n\t\"url\" : \"10.0.1.130:53421,10.0.2.7:53421\",\r\n\t\"user\" : \"sprmys\"\r\n}\r\n{\r\n\t\"_id\" : ObjectId(\"5803afb73e376e3c9d745e98\"),\r\n\t\"partnerId\" : 3,\r\n\t\"clientId\" : -1,\r\n\t\"serverCategory\" : \"MONGO\",\r\n\t\"serverType\" : \"SEQUENCE_FACTORY\",\r\n\t\"name\" : \"MONGO-SEQUENCE_FACTORY-SPR_PARTNER_3_-1_CASE_MANAGEMENT_ID_SEQ\",\r\n\t\"sequenceName\" : \"CASE_MANAGEMENT_ID_SEQ\",\r\n\t\"dbName\" : \"SPR_PARTNER3_CASE_MANAGEMENT_ID_SEQ\",\r\n\t\"mongoServerId\" : \"SPR_PARTNER_0_-1_GLOBAL\",\r\n\t\"url\" : \"10.0.1.130:53421,10.0.2.7:53421\",\r\n\t\"user\" : \"sprmys\"\r\n}\r\n{code}\r\n\r\n2.The look up from mongo happens in this order from the \"dbName\" \r\nExample 1: POST_ID_SEQ\r\n{code}\r\nIf there is a \"dbName\"  contains POST_ID_SEQ, the look up will first start there. In this case from SPR_PARTNER0_POST_ID_SEQ\r\n{code}\r\nExample 2 : ACCOUNT_ID_SEQ\r\n{code}\r\nThe search starts with \"dbName\" containing ACCOUNT_ID_SEQ. If not found , it searches in Global db. In this case from SPR_GLOBAL_SEQUENCE\r\n{code}\r\n3.The generic fallback will be in this order. \r\n{code}\r\nSPR_PARTNER_1_1_POST_ID_SEQ\r\nSPR_PARTNER_1_-1_POST_ID_SEQ\r\nSPR_PARTNER_1_1_GLOBAL\r\nSPR_PARTNER_1_-1_GLOBAL\r\nSPR_PARTNER_0_1_POST_ID_SEQ\r\nSPR_PARTNER_0_-1_POST_ID_SEQ\r\nSPR_PARTNER_0_1_GLOBAL\r\nSPR_PARTNER_0_-1_GLOBAL\r\n{code}\r\n4. The server configuration is saved in sequenceSettings in global mongo\r\n5.The list of sequences is save in \r\n{code}\r\nalias : sequenceMongoCon -1\r\ncollection :sequenceConfigurationBean \r\n{code}",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-17T12:57:35.232-0500",
+      "updated": "2016-10-17T12:57:35.232-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/557872",
+      "id": "557872",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "Explanation of the steps for Migration\r\n1.This curl COPIES the data from mysql to mongo with the offset provided. The data is only copied at this point. The sequence look up still happens from mysql\r\n{code}\r\ncurl -XGET http://localhost:8080/restricted/v1/sequence/toMongoForSequences?offset=100&sequences=POST_ID_SEQ&updateProperty=false\r\n{code}\r\n2.The data is copied to\r\n{code}\r\nsequenceMongoCon -1\r\nstagingDefault:PRIMARY> db.mongoSequence.findOne();\r\n{\r\n        \"_id\" : ObjectId(\"580492d2e4b02dcfbf4c3795\"),\r\n        \"_class\" : \"com.spr.utils.core.sequence.beans.MongoSequence\",\r\n        \"sequenceName\" : \"POST_ID_SEQ\",\r\n        \"clientId\" : NumberLong(-1),\r\n        \"partnerId\" : NumberLong(0),\r\n        \"name\" : \"POST_ID_SEQ_0_-1\",\r\n        \"val\" : NumberLong(31850030)\r\n}\r\n{code}\r\n3.When we run the same curl with updateProperty=true, the lookup for the sequence is enabled from mongo. The sequence count starts incrementing from mongo. We can check the sequence that is enabled in mongo from\r\n{code}\r\nstagingDefault:PRIMARY> db.sequenceSettings.find().pretty();\r\n{\r\n    \"_id\" : ObjectId(\"5804a6d3e4b02dcfbf4c3fb0\"),\r\n    \"_class\" : \"com.spr.utils.core.sequence.beans.SequenceSettings\",\r\n    \"useMongoForAll\" : false,\r\n    \"enabledSequences\" : {\r\n        \"GLOBAL\" : [\r\n            \"POST_ID_SEQ\"\r\n        ]\r\n    }\r\n}\r\n{code}\r\n4.Check the cache refresh for the mongo where lCT is localCacheType\r\n{code}\r\nstagingDefault:PRIMARY> db.cacheRefreshDetails.find(\r\n{'lCT': \"SEQUENCE_SETTINGS\"}\r\n).pretty();\r\n{ \"_id\" : ObjectId(\"5804a6d373390873a58f4635\"), \"lCT\" : \"SEQUENCE_SETTINGS\", \"pId\" : NumberLong(0), \"sDKey\" : \"NONE\", \"uBy\" : \"10.0.5.198/10.0.5.198_RE_/restricted/v1/sequence/toMongoForSequences\", \"rD\" : ISODate(\"2016-10-17T10:24:19.904Z\") }\r\n{code}\r\n5.This curl COPIES the data from mongo to mysql with the offset provided. The data is only copied at this point. The sequence look up still happens from mongo\r\n{code}\r\ncurl -XGET http://localhost:8080/restricted/v1/sequence/toSqlForSequences?offset=1000&sequences=POST_ID_SEQ&updateProperty=false\r\n{code}\r\n6.The data is copied to the SEQUENCE table in mysql\r\n{code}\r\nmysql> select * from SEQUENCE where SEQUENCE_NAME = 'POST_ID_SEQ' \\G;\r\n*************************** 1. row ***************************\r\nSEQUENCE_NAME: POST_ID_SEQ\r\nCURRENT_VALUE: 31853776\r\n    INCREMENT: 1\r\n{code}\r\n7. When the toSqlForSequences curl is run with updateProperty=true , the lookup happens from mysql and that sequence is removed from db.sequenceSettings.find().pretty();",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-17T12:58:15.913-0500",
+      "updated": "2016-10-17T12:58:15.913-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/557876",
+      "id": "557876",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "https://docs.google.com/spreadsheets/d/1muR48dInlkhhm6GfOdGNBXM-zpzgTOiHVxXbNUH681U/edit#gid=1913067576\r\nThe result is being tracked here",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-17T13:02:54.483-0500",
+      "updated": "2016-10-17T13:02:54.483-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/559207",
+      "id": "559207",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "STAGING : \r\n1.Migration was done for POST_ID_SEQ to mongo. The lookup switched to mongo and no issues were seen\r\n2.Migration was done for all sequences to mongo. The lookup switched to mongo and no issues were seen\r\n{code}\r\nstagingDefault:PRIMARY> db.sequenceSettings.find().pretty();\r\n{\r\n\t\"_id\" : ObjectId(\"5804a6d3e4b02dcfbf4c3fb0\"),\r\n\t\"_class\" : \"com.spr.utils.core.sequence.beans.SequenceSettings\",\r\n\t\"useMongoForAll\" : true,\r\n\t\"enabledSequences\" : {\r\n\t\t\"GLOBAL\" : [\r\n\t\t\t\"POST_ID_SEQ\"\r\n\t\t]\r\n\t}\r\n}\r\n{code}\r\n3.Load testing was done and the result is documented here https://docs.google.com/spreadsheets/d/1muR48dInlkhhm6GfOdGNBXM-zpzgTOiHVxXbNUH681U/edit#gid=360664004\r\n4.Finally, Migration was done for all sequences to mysql. The lookup switched to mysql and no issues were seen\r\n{code}\r\nstagingDefault:PRIMARY> db.sequenceSettings.find().pretty();\r\n{\r\n\t\"_id\" : ObjectId(\"5804a6d3e4b02dcfbf4c3fb0\"),\r\n\t\"_class\" : \"com.spr.utils.core.sequence.beans.SequenceSettings\",\r\n\t\"useMongoForAll\" : false,\r\n\t\"enabledSequences\" : {\r\n\t\t\r\n}\r\n{code}\r\n",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-19T11:57:52.099-0500",
+      "updated": "2016-10-19T11:57:52.099-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/560593",
+      "id": "560593",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "Migration of POST_ID_SEQ and LINK_ID_SEQ done in NQA ",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-21T12:16:30.006-0500",
+      "updated": "2016-10-21T12:16:30.006-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/563107",
+      "id": "563107",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "Migration of POST_ID_SEQ done in prod and the logs are being monitored by ITOPS ",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-10-26T01:27:00.641-0500",
+      "updated": "2016-10-26T01:27:00.641-0500"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/198633/comment/567642",
+      "id": "567642",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "body": "Migration of LINK_ID_SEQ done in prod and the logs are being monitored by ITOPS",
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=priya.sarkar%40test.com",
+        "name": "priya.sarkar@test.com",
+        "key": "priya.sarkar@test.com",
+        "emailAddress": "priya.sarkar@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?avatarId=10072",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&avatarId=10072",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10072",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&avatarId=10072"
+        },
+        "displayName": "Priya Sarkar",
+        "active": true,
+        "timeZone": "Indian/Maldives"
+      },
+      "created": "2016-11-07T00:35:52.061-0600",
+      "updated": "2016-11-07T00:35:52.061-0600"
+    }
+  ]
+}

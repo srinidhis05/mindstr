@@ -1,0 +1,36 @@
+{
+  "id": "4292",
+  "name": "Delete an Email from Platform from Thirdpane message workflow",
+  "tags": [
+    "Smoke",
+    "Regression"
+  ],
+  "suites": [
+    "Gmail"
+  ],
+  "created_by": "vsajjan@gmail.com",
+  "priority": 0,
+  "steps": [
+    {
+      "instruction": "PRE-REQUISITE: Client property for Email should be enabled",
+      "expected": ""
+    },
+    {
+      "instruction": " Login to WebUI.\n",
+      "expected": " Login must be successfull\n"
+    },
+    {
+      "instruction": " Add GMAIL column by seleting the Account name.\n",
+      "expected": " GMAIL Clolumn should be added\n"
+    },
+    {
+      "instruction": " Click on delete for a particular message from thirdpane message workflow\n",
+      "expected": " The message should be deleted from message cell\n"
+    },
+    {
+      "instruction": " Verify from channel for is the post is deleted",
+      "expected": " In channel the the deleted post should not be seen"
+    }
+  ]
+}
+

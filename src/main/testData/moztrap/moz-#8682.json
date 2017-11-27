@@ -1,0 +1,32 @@
+{
+      "id": "8682",
+  "name": "To add an Account in Gmail",
+  "tags": [
+    "Smoke",
+    "Regression"
+  ],
+  "suites": [
+    "Gmail"
+  ],
+  "created_by": "vsandeep.raj@gmail.com",
+  "priority": 0,
+  "steps": [
+    {
+      "instruction": "PRE-REQUISITE: Client property for Email should be enabled",
+      "expected": ""
+    },
+    {
+      "instruction": "Log in to webUI.\n",
+      "expected": "Login should be successful\n"
+    },
+    {
+      "instruction": "Goto Adminstration-> Settings.\n",
+      "expected": " Settings should be opened.\n"
+    },
+    {
+      "instruction": " Select Gmail Accounts and Click on Add account",
+      "expected": " On clicking on add account, the User should be able to successfully add the account. And the account added should be seen while adding a column."
+    }
+  ]
+}
+

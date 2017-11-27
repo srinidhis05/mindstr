@@ -1,0 +1,37 @@
+body {
+  background: #ced3d0;
+}
+.js-mindmap-active a.node {
+  background:grey;
+  border: 2px solid white;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.js-mindmap-active a.node.active {
+  padding:5px 10px !important;
+  border-width:5px !important;
+}
+.js-mindmap-active a.node.activeparent {
+  padding:5px 10px !important;
+  border-width:5px !important;
+  background:darkslategrey;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.js-mindmap-active .linkNode {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  display:block;
+  background:grey;
+  border: 2px solid white;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+}
